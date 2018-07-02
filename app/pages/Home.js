@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import CategoryLabel from '../components/CategoryLabel';
+import CategoryCard from '../components/CategoryCard';
 
 import logo from '../assets/images/star-wars-logo.png';
 
@@ -40,12 +40,12 @@ class Home extends React.Component {
           alt="Star Wars Logo"
         />
 
-        {Object.keys(categories).map(cat => (
-          <CategoryLabel
-            key={`cat-list-${cat}`}
+        { Object.keys(categories).map(cat => (
+          <CategoryCard
+            key={`cat-card-${cat}`}
             category={cat}
           />
-        ))}
+        )) }
       </div>
     );
   }

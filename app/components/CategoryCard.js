@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class CategoryLabel extends React.Component {
+class CategoryCard extends React.Component {
   static propTypes = {
     category: PropTypes.string.isRequired,
   };
@@ -24,4 +24,4 @@ class CategoryLabel extends React.Component {
   }
 }
 
-export default CategoryLabel;
+export default CategoryCard;
