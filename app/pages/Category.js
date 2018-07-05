@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import WrapperCard from '../components/Card/WrapperCard';
+
 class Category extends React.Component {
   static propTypes = {
     match: PropTypes.shape({
@@ -24,7 +26,6 @@ class Category extends React.Component {
 
     axios.get(`https://swapi.co/api/${category}/`)
       .then((response) => {
-        console.log(response);
         this.setState({ results: response.data.results });
       })
       .catch(() => {
@@ -38,7 +39,7 @@ class Category extends React.Component {
   }
 
   render() {
-    const { results } = this.state;
+    const { results, category } = this.state;
     const categoryName = this.categoryName();
 
     return (
@@ -47,8 +48,11 @@ class Category extends React.Component {
 
         <ul>
           { results.map(result => (
-            <li key={`cat-result-${result.name}`}>
-              {result.name}
+            <li key={result.url}>
+              <WrapperCard
+                data={result}
+                type={category}
+              />
             </li>
           )) }
         </ul>
