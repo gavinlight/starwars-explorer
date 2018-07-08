@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import MetaData from './Details/MetaData';
+import RelatedData from './Details/RelatedData';
+
 class Card extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -33,12 +36,26 @@ class Card extends React.Component {
     } = this.props;
 
     return (
-      <span>
-        {category}
-        {title}
-        {JSON.stringify(metaData)}
-        {JSON.stringify(relatedData)}
-      </span>
+      <article>
+        <h1>{title}</h1>
+        <h2>{category}</h2>
+
+        <ul>
+          { metaData.map(meta => (
+            <li key={`${meta.name}-${meta.value}`}>
+              <MetaData name={meta.name} value={meta.value} />
+            </li>
+          )) }
+        </ul>
+
+        <ul>
+          { relatedData.map(related => (
+            <li key={`${related.type}-${related.url}`}>
+              <RelatedData type={related.type} url={related.url} />
+            </li>
+          )) }
+        </ul>
+      </article>
     );
   }
 }

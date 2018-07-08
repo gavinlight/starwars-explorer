@@ -37,7 +37,7 @@ class SpeciesCard extends React.Component {
         { name: 'Average lifestpan', value: data.average_lifespan },
       ],
       relatedData: data.people.slice(0, 3).map(character => ({
-        type: 'people', url: character,
+        type: 'person', url: character,
       })),
     };
   }
