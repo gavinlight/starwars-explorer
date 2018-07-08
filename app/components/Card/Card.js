@@ -7,7 +7,8 @@ import RelatedData from './Details/RelatedData';
 class Card extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
+    tag: PropTypes.string,
+    url: PropTypes.string.isRequired,
 
     metaData: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -21,24 +22,20 @@ class Card extends React.Component {
   };
 
   static defaultProps = {
+    tag: '',
     metaData: [],
     relatedData: [],
   }
 
-  categoryName() {
-    const { category } = this.props;
-    return category && category[0].toUpperCase() + category.slice(1);
-  }
-
   render() {
     const {
-      category, title, metaData, relatedData,
+      title, tag, url, metaData, relatedData,
     } = this.props;
 
     return (
       <article>
-        <h1>{title}</h1>
-        <h2>{category}</h2>
+        <h1><a href={url}>{title}</a></h1>
+        <h2>{tag}</h2>
 
         <ul>
           { metaData.map(meta => (

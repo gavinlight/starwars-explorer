@@ -8,6 +8,7 @@ class PlanetCard extends React.Component {
     type: PropTypes.string.isRequired,
     data: PropTypes.shape({
       name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       diameter: PropTypes.string.isRequired,
       gravity: PropTypes.string.isRequired,
       orbital_period: PropTypes.string.isRequired,
@@ -24,7 +25,8 @@ class PlanetCard extends React.Component {
 
     return {
       title: data.name,
-      category: type,
+      tag: type,
+      url: data.url,
       metaData: [
         { name: 'Diameter', value: data.diameter },
         { name: 'Gravity', value: data.gravity },
@@ -45,7 +47,8 @@ class PlanetCard extends React.Component {
     return (
       <Card
         title={data.title}
-        category={data.category}
+        tag={data.tag}
+        url={data.url}
         metaData={data.metaData}
         relatedData={data.relatedData}
       />

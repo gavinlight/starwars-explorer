@@ -8,6 +8,7 @@ class SpeciesCard extends React.Component {
     type: PropTypes.string.isRequired,
     data: PropTypes.shape({
       name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       classification: PropTypes.string.isRequired,
       designation: PropTypes.string.isRequired,
       language: PropTypes.string.isRequired,
@@ -25,7 +26,8 @@ class SpeciesCard extends React.Component {
 
     return {
       title: data.name,
-      category: type,
+      tag: type,
+      url: data.url,
       metaData: [
         { name: 'Classification', value: data.classification },
         { name: 'Designation', value: data.designation },
@@ -48,7 +50,8 @@ class SpeciesCard extends React.Component {
     return (
       <Card
         title={data.title}
-        category={data.category}
+        tag={data.tag}
+        url={data.url}
         metaData={data.metaData}
         relatedData={data.relatedData}
       />

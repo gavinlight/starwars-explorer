@@ -8,6 +8,7 @@ class PeopleCard extends React.Component {
     type: PropTypes.string.isRequired,
     data: PropTypes.shape({
       name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       gender: PropTypes.string.isRequired,
       mass: PropTypes.string.isRequired,
       birth_year: PropTypes.string.isRequired,
@@ -23,7 +24,8 @@ class PeopleCard extends React.Component {
 
     return {
       title: data.name,
-      category: type,
+      tag: type,
+      url: data.url,
       metaData: [
         { name: 'Gender', value: data.gender },
         { name: 'Length', value: data.height },
@@ -45,7 +47,8 @@ class PeopleCard extends React.Component {
     return (
       <Card
         title={data.title}
-        category={data.category}
+        tag={data.tag}
+        url={data.url}
         metaData={data.metaData}
         relatedData={data.relatedData}
       />

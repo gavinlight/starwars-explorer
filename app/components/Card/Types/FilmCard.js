@@ -8,6 +8,7 @@ class FilmCard extends React.Component {
     type: PropTypes.string.isRequired,
     data: PropTypes.shape({
       title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       director: PropTypes.string.isRequired,
       producer: PropTypes.string.isRequired,
       release_date: PropTypes.string.isRequired,
@@ -21,7 +22,8 @@ class FilmCard extends React.Component {
 
     return {
       title: data.title,
-      category: type,
+      tag: type,
+      url: data.url,
       metaData: [
         { name: 'Director', value: data.director },
         { name: 'Producer', value: data.producer },
@@ -40,7 +42,8 @@ class FilmCard extends React.Component {
     return (
       <Card
         title={data.title}
-        category={data.category}
+        tag={data.tag}
+        url={data.url}
         metaData={data.metaData}
         relatedData={data.relatedData}
       />

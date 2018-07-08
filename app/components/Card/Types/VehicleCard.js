@@ -8,6 +8,7 @@ class VehicleCard extends React.Component {
     type: PropTypes.string.isRequired,
     data: PropTypes.shape({
       name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       passengers: PropTypes.string.isRequired,
       model: PropTypes.string.isRequired,
       max_atmosphering_speed: PropTypes.string.isRequired,
@@ -26,7 +27,8 @@ class VehicleCard extends React.Component {
 
     return {
       title: data.name,
-      category: type,
+      tag: type,
+      url: data.url,
       metaData: [
         { name: 'Passengers', value: data.passengers },
         { name: 'model', value: data.model },
@@ -50,7 +52,8 @@ class VehicleCard extends React.Component {
     return (
       <Card
         title={data.title}
-        category={data.category}
+        tag={data.tag}
+        url={data.url}
         metaData={data.metaData}
         relatedData={data.relatedData}
       />
