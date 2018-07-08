@@ -6,16 +6,21 @@ class Card extends React.Component {
     title: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
 
-    meta_data: PropTypes.arrayOf( PropTypes.shape({
+    metaData: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
-    }) ),
+    })),
 
-    related_data: PropTypes.arrayOf( PropTypes.shape({
+    relatedData: PropTypes.arrayOf(PropTypes.shape({
       type: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
-    }) ),
+    })),
   };
+
+  static defaultProps = {
+    metaData: [],
+    relatedData: [],
+  }
 
   categoryName() {
     const { category } = this.props;
@@ -23,15 +28,16 @@ class Card extends React.Component {
   }
 
   render() {
-    const { category, title } = this.props;
-    // const categoryName = this.categoryName();
+    const {
+      category, title, metaData, relatedData,
+    } = this.props;
 
     return (
       <span>
-        <h1>{title}</h1>
-        <a href="#test">
-          {category}
-        </a>
+        {category}
+        {title}
+        {JSON.stringify(metaData)}
+        {JSON.stringify(relatedData)}
       </span>
     );
   }
