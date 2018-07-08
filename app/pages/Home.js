@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import CategoryCard from '../components/CategoryCard';
-
+import Card from '../components/Card/Card';
 import logo from '../assets/images/star-wars-logo.png';
 
 class Home extends React.Component {
@@ -41,9 +40,12 @@ class Home extends React.Component {
         />
 
         { Object.keys(categories).map(cat => (
-          <CategoryCard
+          <Card
             key={`cat-card-${cat}`}
-            category={cat}
+
+            title={cat}
+            url={`/#/cat/${cat}`}
+            tag="Category"
           />
         )) }
       </div>
