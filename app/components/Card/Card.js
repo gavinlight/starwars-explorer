@@ -37,21 +37,26 @@ class Card extends React.Component {
         <h1><a href={url}>{title}</a></h1>
         <h2>{tag}</h2>
 
-        <ul>
-          { metaData.map(meta => (
-            <li key={`${meta.name}-${meta.value}`}>
-              <MetaData name={meta.name} value={meta.value} />
-            </li>
-          )) }
-        </ul>
+        { relatedData.length > 0 && (
+          <ul>
+            { metaData.map(meta => (
+              <li key={`${meta.name}-${meta.value}`}>
+                <MetaData name={meta.name} value={meta.value} />
+              </li>
+            )) }
+          </ul>
+        ) }
 
-        <ul>
-          { relatedData.map(related => (
-            <li key={`${related.type}-${related.url}`}>
-              <RelatedData type={related.type} url={related.url} />
-            </li>
-          )) }
-        </ul>
+        { relatedData.length > 0 && (
+          <ul>
+            { relatedData.map(related => (
+              <li key={`${related.type}-${related.url}`}>
+                <RelatedData type={related.type} url={related.url} />
+              </li>
+            )) }
+          </ul>
+        ) }
+
       </article>
     );
   }

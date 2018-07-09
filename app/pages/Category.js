@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+
+import { connect } from 'react-redux';
+import { fetchResults } from '../store/actions/fetchResults';
 
 import WrapperCard from '../components/Card/WrapperCard';
 
@@ -11,26 +13,22 @@ class Category extends React.Component {
         category: PropTypes.string.isRequired,
       }),
     }).isRequired,
+
+    fetchResults: PropTypes.func.isRequired,
+    results: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      results: [],
       category: props.match.params.category,
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    const { fetchResults } = this.props;
     const { category } = this.state;
-
-    axios.get(`https://swapi.co/api/${category}/`)
-      .then((response) => {
-        this.setState({ results: response.data.results });
-      })
-      .catch(() => {
-        // Handle error
-      });
+    fetchResults(category);
   }
 
   categoryName() {
@@ -39,7 +37,8 @@ class Category extends React.Component {
   }
 
   render() {
-    const { results, category } = this.state;
+    const { category } = this.state;
+    const { results } = this.props;
     const categoryName = this.categoryName();
 
     return (
@@ -61,4 +60,8 @@ class Category extends React.Component {
   }
 }
 
-export default Category;
+const mapStateToProps = state => ({
+  results: state.results,
+});
+
+export default connect(mapStateToProps, { fetchResults })(Category);

@@ -1,34 +1,29 @@
 import React from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
+import { fetchCategories } from '../store/actions/fetchCategories';
 
 import Card from '../components/Card/Card';
 import logo from '../assets/images/star-wars-logo.png';
 
 class Home extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      title: 'Starwars Explorer',
-      categories: {},
-    };
-  }
+  static propTypes = {
+    fetchCategories: PropTypes.func.isRequired,
+    categories: PropTypes.shape({}).isRequired,
+  };
 
-  componentDidMount() {
-    axios.get('https://swapi.co/api/')
-      .then((response) => {
-        this.setState({ categories: response.data });
-      })
-      .catch(() => {
-        // Handle error
-      });
+  componentWillMount() {
+    const { fetchCategories } = this.props;
+    fetchCategories();
   }
 
   render() {
-    const { title, categories } = this.state;
+    const { categories } = this.props;
 
     return (
       <div>
-        <h2 id="heading">{ title }</h2>
+        <h2 id="heading">Starwars Explorer</h2>
 
         <img
           className="image"
@@ -53,4 +48,8 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  categories: state.categories,
+});
+
+export default connect(mapStateToProps, { fetchCategories })(Home);
