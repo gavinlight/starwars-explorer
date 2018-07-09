@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { fetchResults } from '../store/actions/fetchResults';
+import { sortResults } from '../store/actions/sortResults';
 
 import WrapperCard from '../components/Card/WrapperCard';
 
@@ -15,6 +16,7 @@ class Category extends React.Component {
     }).isRequired,
 
     fetchResults: PropTypes.func.isRequired,
+    sortResults: PropTypes.func.isRequired,
     results: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   };
 
@@ -38,12 +40,14 @@ class Category extends React.Component {
 
   render() {
     const { category } = this.state;
-    const { results } = this.props;
+    const { results, sortResults } = this.props;
     const categoryName = this.categoryName();
 
     return (
       <div>
         <h1>{categoryName}</h1>
+
+        <button type="button" onClick={sortResults}>SORT</button>
 
         <ul>
           { results.map(result => (
@@ -64,4 +68,4 @@ const mapStateToProps = state => ({
   results: state.results,
 });
 
-export default connect(mapStateToProps, { fetchResults })(Category);
+export default connect(mapStateToProps, { fetchResults, sortResults })(Category);
