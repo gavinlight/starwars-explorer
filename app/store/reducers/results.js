@@ -4,10 +4,15 @@ const results = (state = [], action) => {
       return action.results;
     case 'SORT_RESULTS':
       return [...state].sort((a, b) => {
-        const aName = a.name || a.title || '';
-        const bName = b.name || b.title || '';
+        const nameA = a.name || a.title || '';
+        const nameB = b.name || b.title || '';
 
-        return aName.localeCompare(bName);
+        return nameA.localeCompare(nameB);
+      });
+    case 'SEARCH_RESULTS':
+      return [...state].filter((result) => {
+        const name = result.name || result.title || '';
+        return name.toLowerCase().indexOf(action.query.toLowerCase()) > -1;
       });
     default:
       return state;
