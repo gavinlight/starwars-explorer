@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
 
 import { fetchResults } from '../store/actions/fetchResults';
 import { sortResults } from '../store/actions/sortResults';
 import { searchResults } from '../store/actions/searchResults';
 
+import Page from '.';
 import WrapperCard from '../components/Card/WrapperCard';
 
 class Category extends React.Component {
@@ -57,11 +57,11 @@ class Category extends React.Component {
     const categoryName = this.categoryName();
 
     return (
-      <div>
-        <h1>{categoryName}</h1>
-
-        <button type="button" onClick={sortResults}>SORT</button>
-        <input type="text" placeholder="Search" onChange={event => this.setSearchQuery(event)} value={query} />
+      <Page title={categoryName}>
+        <section className="header-action-bar">
+          <input type="text" placeholder="Search" onChange={event => this.setSearchQuery(event)} value={query} />
+          <button type="button" onClick={sortResults}>Sort</button>
+        </section>
 
         <ul>
           { results.map(result => (
@@ -73,7 +73,7 @@ class Category extends React.Component {
             </li>
           )) }
         </ul>
-      </div>
+      </Page>
     );
   }
 }

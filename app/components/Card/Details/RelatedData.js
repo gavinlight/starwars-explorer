@@ -37,7 +37,7 @@ class RelatedData extends React.Component {
 
     return (
       <div>
-        <span>{type}:</span>
+        <span>{type}: </span>
         <a target="_blank" rel="noopener noreferrer" href={url}>{name}</a>
       </div>
     );

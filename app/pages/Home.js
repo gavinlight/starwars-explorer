@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
+
 import { fetchCategories } from '../store/actions/fetchCategories';
 
+import Page from '.';
 import Card from '../components/Card/Card';
-import logo from '../assets/images/star-wars-logo.png';
 
 class Home extends React.Component {
   static propTypes = {
@@ -18,32 +18,25 @@ class Home extends React.Component {
     fetchCategories();
   }
 
+  categoryName = (cat) => {
+    return cat[0].toUpperCase() + cat.slice(1);
+  }
+
   render() {
     const { categories } = this.props;
 
     return (
-      <div>
-        <h2 id="heading">Starwars Explorer</h2>
-
-        <img
-          className="image"
-          style={{ margin: '0.5em' }}
-          height="auto"
-          width="150"
-          src={logo}
-          alt="Star Wars Logo"
-        />
-
+      <Page title="Categories">
         { Object.keys(categories).map(cat => (
           <Card
             key={`cat-card-${cat}`}
 
-            title={cat}
+            title={this.categoryName(cat)}
             url={`/#/cat/${cat}`}
             tag="Category"
           />
         )) }
-      </div>
+      </Page>
     );
   }
 }

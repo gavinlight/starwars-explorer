@@ -1,5 +1,153 @@
 $color: #262828;
 
+$color-main: #031761;
+$color-second: #1c317b;
+$color-support: #2987f6;
+$color-contrast: #ee9815;
+
+$color-text-main: #333;
+$color-text-support: #7c7c7c;
+$color-text-contrast: #f2f2f2;
+
 body {
-  color: $color;
+  color: $color-text-main;
+  background-color: #FFF;
+
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 100;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+header {
+  background-color: $color-main;
+  color: $color-text-contrast;
+  padding: .7em 1.5em;
+
+  img {
+    width: 100px;
+    display: inline-block;
+    display: none;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+footer {
+  background-color: $color-support;
+  color: $color-text-contrast;
+  padding: .7em 1.5em;
+
+  p {
+    text-align: center;
+    margin: 0;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+article.card {
+  max-width: 400px;
+  width: 90%;
+  margin: 1em auto;
+
+  background-color: $color-main;
+  color: $color-text-contrast;
+
+  h1 {
+    width: 100%;
+    margin: 0;
+    padding: .3em 20px;
+    background-color: $color-second;
+  }
+
+
+  span.tag {
+    display: inline-block;
+    background-color: $color-support;
+    margin: .7em 20px;
+
+    padding: .2em .5em;
+  }
+
+  .card-info {
+    padding: .7em 20px;
+    button {
+      appearance: none;
+      border: none;
+
+      width: 50%;
+      display: inline-block;
+      text-align: center;
+      padding-bottom: .5em;
+
+      background-color: transparent;
+      color: $color-text-contrast;
+
+      &:focus {
+        outline: none;
+      }
+
+      &.active {
+        border-bottom: 2px solid $color-support;
+      }
+    }
+
+    ul {
+      display: none;
+      margin: 1.5em 0 1em;
+
+      &.active {
+        display: block;
+      }
+
+      a {
+        text-decoration: underline;
+      }
+    }
+
+
+  }
+}
+
+section.header-action-bar {
+  background-color: $color-support;
+  padding: 1em 20px;
+
+  button {
+    width: 20%;
+    display: inline-block;
+
+    appearance: none;
+    border: none;
+    background-color: $color-contrast;
+    color: $color-text-contrast;
+    padding: .4em 0;
+  }
+
+  input {
+    width: 70%;
+    margin-right: 10%;
+    display: inline-block;
+    padding: .4em 1em;
+    border: none;
+  }
 }

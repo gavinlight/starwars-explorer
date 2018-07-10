@@ -5,6 +5,7 @@ import { AppContainer } from 'react-hot-loader';
 
 import store from './store';
 import Root from './config/Root';
+import 'normalize.css';
 
 const render = (Component) => {
   ReactDOM.render(

@@ -6,7 +6,7 @@ const MetaData = (props) => {
 
   return (
     <div>
-      <span>{name}:</span>
+      <span>{name}: </span>
       {value}
     </div>
   );

@@ -1,37 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MetaData from './Details/MetaData';
-import RelatedData from './Details/RelatedData';
+import InfoToggle from './Details/InfoToggle';
 
 const Card = ({
   title, tag, url, metaData, relatedData,
 }) => {
   return (
-    <article>
+    <article className="card">
+      <span className="tag">{tag}</span>
+
       <h1><a href={url}>{title}</a></h1>
-      <h2>{tag}</h2>
-
-      { relatedData.length > 0 && (
-        <ul>
-          { metaData.map(meta => (
-            <li key={`${meta.name}-${meta.value}`}>
-              <MetaData name={meta.name} value={meta.value} />
-            </li>
-          )) }
-        </ul>
-      ) }
-
-      { relatedData.length > 0 && (
-        <ul>
-          { relatedData.map(related => (
-            <li key={`${related.type}-${related.url}`}>
-              <RelatedData type={related.type} url={related.url} />
-            </li>
-          )) }
-        </ul>
-      ) }
-
+      <InfoToggle metaData={metaData} relatedData={relatedData} />
     </article>
   );
 };
