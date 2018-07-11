@@ -77,6 +77,10 @@ article.card {
     margin: 0;
     padding: .3em 20px;
     background-color: $color-second;
+
+    a {
+      display: block;
+    }
   }
 
 

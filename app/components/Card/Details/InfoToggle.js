@@ -38,8 +38,13 @@ class InfoToggle extends React.Component {
 
     return (
       <section className="card-info">
-        <button className={activeMeta ? 'active' : ''} type="button" onClick={this.toggleInfoState}>Meta data</button>
-        <button className={!activeMeta ? 'active' : ''} type="button" onClick={this.toggleInfoState}>Related data</button>
+        { metaData.length > 0 && (
+          <button className={activeMeta ? 'active' : ''} type="button" onClick={this.toggleInfoState}>Meta data</button>
+        ) }
+
+        { relatedData.length > 0 && (
+          <button className={!activeMeta ? 'active' : ''} type="button" onClick={this.toggleInfoState}>Related data</button>
+        ) }
 
         { metaData.length > 0 && (
           <ul className={activeMeta ? 'active' : ''}>
