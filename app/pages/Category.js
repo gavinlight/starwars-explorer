@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { fetchResults } from '../store/actions/fetchResults';
+import { emptyResults } from '../store/actions/emptyResults';
 import { sortResults } from '../store/actions/sortResults';
 import { searchResults } from '../store/actions/searchResults';
 
@@ -18,6 +19,7 @@ class Category extends React.Component {
     }).isRequired,
 
     fetchResults: PropTypes.func.isRequired,
+    emptyResults: PropTypes.func.isRequired,
     sortResults: PropTypes.func.isRequired,
     searchResults: PropTypes.func.isRequired,
 
@@ -36,6 +38,11 @@ class Category extends React.Component {
     const { fetchResults } = this.props;
     const { category } = this.state;
     fetchResults(category);
+  }
+
+  componentWillUnmount() {
+    const { emptyResults } = this.props;
+    emptyResults();
   }
 
   setSearchQuery(event) {
@@ -82,4 +89,6 @@ const mapStateToProps = state => ({
   results: state.results,
 });
 
-export default connect(mapStateToProps, { fetchResults, sortResults, searchResults })(Category);
+export default connect(mapStateToProps, {
+  fetchResults, emptyResults, sortResults, searchResults,
+})(Category);

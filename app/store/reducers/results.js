@@ -14,6 +14,8 @@ const results = (state = [], action) => {
         const name = result.name || result.title || '';
         return name.toLowerCase().indexOf(action.query.toLowerCase()) > -1;
       });
+    case 'EMPTY_RESULTS':
+      return [];
     default:
       return state;
   }
