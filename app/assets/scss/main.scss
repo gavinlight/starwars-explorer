@@ -36,12 +36,6 @@ header {
   color: $color-text-contrast;
   padding: .7em 1.5em;
 
-  img {
-    width: 100px;
-    display: inline-block;
-    display: none;
-  }
-
   h1 {
     font-size: 1.5em;
     text-align: center;
@@ -93,7 +87,9 @@ article.card {
   }
 
   .card-info {
-    padding: .7em 20px;
+    margin: .7em 20px;
+    overflow-y: auto;
+    
     button {
       appearance: none;
       border: none;
