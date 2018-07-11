@@ -19,14 +19,21 @@ class RelatedData extends React.Component {
 
   componentDidMount() {
     const { url } = this.props;
+    this.mounted = true;
 
     axios.get(url)
       .then((response) => {
-        this.setState({ name: response.data.name || response.data.title });
+        if (this.mounted) {
+          this.setState({ name: response.data.name || response.data.title });
+        }
       })
       .catch(() => {
         // Handle error
       });
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   capitalize = (string) => { return string.charAt(0).toUpperCase() + string.slice(1); }
